@@ -68,23 +68,23 @@ def download_pdf(urls,save_dir):
             with open(pdf_path, 'wb') as f:
                 f.write(content)
         except requests.exceptions.Timeout:
-            print('下载超时，正在处理响应')
+            print('{}:下载超时，正在处理响应'.format(url))
             error_urls.append("{}:{}".format(url,"time out"))
             continue
         except requests.exceptions.ConnectionError as e:
-            print('下载失败，正在处理响应')
+            print('{}:下载失败，正在处理响应'.format(url))
             error_urls.append("{}:{}".format(url,e))
             continue
         except requests.exceptions.HTTPError as e:
-            print('HTTP错误:', e)
+            print('{}:HTTP错误:'.format(url), e)
             error_urls.append("{}:{}".format(url,e))
             continue
         except requests.exceptions.RequestException as e:
-            print('请求异常:', e)
+            print('{}:请求异常:'.format(url), e)
             error_urls.append("{}:{}".format(url,e))
             continue
         except Exception as e:
-            print('其他异常:', e)
+            print('{}:其他异常:'.format(url), e)
             error_urls.append("{}:{}".format(url,e))
             continue
 
